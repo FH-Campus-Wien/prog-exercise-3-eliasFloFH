@@ -102,7 +102,6 @@ public class App {
         } while (count <= 10);
 
     }
-
     public static int randomNumberBetweenOneAndHundred() {
 
         int min = 1;
@@ -111,6 +110,91 @@ public class App {
         Random randomNumberGenerator2 = new Random();
         return min + randomNumberGenerator2.nextInt(max);
     }
+
+    // ========== Fourth Exercise ==========
+
+    public static boolean swapArrays(int arr1[], int arr2[]) {
+
+        if (arr1.length == arr2.length) {
+            int temp;
+            for (int x = 0; x < arr1.length; x++) {
+                temp = arr1[x];
+                arr1[x] = arr2[x];
+                arr2[x] = temp;
+            }
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    // ========== Fifth Exercise ==========
+
+    public static String camelCase(String randomString) {
+
+        char[] character = randomString.toCharArray();
+        String start = "";
+
+        int count = 0;
+
+        while (count < character.length) {
+
+            if (count == 0) {
+                if ('a' <= character[0] && 'z' >= character[0]) {
+                    start = start + (char)(character[0] - 32);
+                } else if (character[0] >= 'A' && character[0] <= 'Z') {
+                    start = start + character[0];
+                } else {
+                    continue;
+                }
+            } else if (character[count] >= 'a' && character[count] <= 'z') {
+                if (character[count - 1] == ' ') {
+                    start = start + (char)(character[count] - 32);
+                } else {
+                    start = start + character[count];
+                }
+            } else if (character[count] >= 'A' && character[count] <= 'Z') {
+                if (character[count - 1] != ' ') {
+                    start = start + (char)(character[count] + 32);
+                } else {
+                    start = start + character[count];
+                }
+            }
+
+            count++;
+
+        }
+
+        return start;
+    }
+
+    // ========== Sixth Exercise ==========
+
+    public static int checkDigit(int codeInput[]) {
+
+        int checkCode = 0;
+        int countLoop = 0;
+
+        while (countLoop < codeInput.length) {
+
+            checkCode += codeInput[countLoop] * (countLoop + 2);
+
+            countLoop++;
+        }
+
+        checkCode = 11 - (checkCode % 11);
+
+        if (checkCode == 10) {
+            return  0;
+        } else if (checkCode == 11) {
+            return 5;
+        } else {
+            return checkCode;
+        }
+    }
+
+
 
     public static void main(String[] args) {
         // test your method implementations here
@@ -124,6 +208,10 @@ public class App {
     lcg(0);
 
     guessingGame(randomNumberBetweenOneAndHundred());
+
+    swapArrays(new int[]{4,3,2}, new int[]{3});
+
+    camelCase("helloworldhowareyou");
 
 
 
